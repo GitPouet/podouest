@@ -207,19 +207,13 @@
 
   .glitch-wrap{ position:relative; margin:0 0 26px -0.03em; max-width:100%; }
   .glitch{
-    font-size:clamp(1.85rem, 15vw, 6rem);
+    font-size:clamp(1.85rem, 14vw, 6rem);
     font-weight:800;
     text-transform:uppercase;
     letter-spacing:-0.03em;
     line-height:0.94;
     position:relative;
     color:var(--cream);
-  }
-  @media (max-width:1049px){
-    .glitch{ overflow-wrap:break-word; word-break:break-word; }
-  }
-  @media (min-width:1050px){
-    .glitch{ white-space:nowrap; }
   }
   .glitch::before,
   .glitch::after{
@@ -458,7 +452,7 @@
     <div class="hero-veil"></div>
     <div class="wrap hero-inner">
       <div class="glitch-wrap">
-        <h1 class="glitch" data-text="PodOuest">PodOuest</h1>
+        <h1 class="glitch" data-text="Pod&#8203;Ouest">Pod<wbr>Ouest</h1>
       </div>
       <p class="hero-sub">Les <strong>Rencontres Podcast et Son du Sud-Ouest</strong>. Une journée pour que les professionnel·les du son de la région se rencontrent enfin, pour de vrai.</p>
       <div class="hero-meta">
