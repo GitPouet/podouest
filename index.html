@@ -38,7 +38,7 @@
   "@type": "Event",
   "name": "PodOuest — Épisode 01 : Journée professionnelle du podcast et du son",
   "description": "Journée professionnelle réunissant les créateurs de podcast, journalistes, compositeurs et ingénieurs son du Sud-Ouest de la France. Voix, ligne éditoriale, création sonore et modèles économiques du podcast.",
-  "startDate": "2026-10-02T09:30:00+02:00",
+  "startDate": "2026-10-02T09:00:00+02:00",
   "endDate": "2026-10-02T17:00:00+02:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "eventStatus": "https://schema.org/EventScheduled",
@@ -304,12 +304,20 @@
     display:flex; align-items:center; justify-content:center;
     font-family:'Syne',sans-serif; font-weight:800; font-size:0.95rem; color:var(--ink);
   }
+  img.signee-avatar{ object-fit:cover; background:var(--void-2); }
   .signee-name{ font-weight:700; font-size:0.95rem; }
+  .signee-name a{ text-decoration:none; border-bottom:1px solid var(--coral); }
+  .signee-name a:hover{ color:var(--coral); }
   .signee-role{ font-size:0.82rem; color:var(--lavender-dim); }
 
   /* ---------- Program ---------- */
   .program{ padding-top:clamp(60px,9vw,110px); padding-bottom:clamp(60px,9vw,110px); border-top:1px solid var(--line); }
   .program-note{ font-size:0.86rem; color:var(--lavender-dim); margin-top:-8px; margin-bottom:40px; max-width:52ch; }
+  .program-layout{
+    display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);
+    gap:clamp(36px,5vw,76px); align-items:start;
+  }
+  @media (max-width:920px){ .program-layout{ grid-template-columns:1fr; } }
 
   .timeline{ position:relative; }
   .timeline::before{
@@ -323,15 +331,16 @@
     display:grid;
     grid-template-columns:86px 1fr;
     gap:0 28px;
-    padding:22px 0;
+    padding:20px 0;
     position:relative;
   }
-  @media (max-width:640px){ .slot{ grid-template-columns:64px 1fr; } }
+  @media (max-width:640px){ .slot{ grid-template-columns:64px 1fr; gap:0 24px; } }
   .slot + .slot{ border-top:1px solid var(--line); }
 
   .slot-time{
-    font-family:'Space Mono',monospace; font-size:0.98rem; color:var(--coral); font-weight:700;
-    padding-top:3px; position:relative;
+    font-family:'Space Mono',monospace; font-size:0.76rem; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--coral); font-weight:700;
+    padding-top:6px; position:relative;
   }
   .slot-time::before{
     content:''; position:absolute; left:calc(86px - 3px); top:9px; width:9px; height:9px; border-radius:50%;
@@ -342,10 +351,37 @@
   .slot.is-break .slot-time{ color:var(--lavender-dim); }
   .slot.is-break .slot-time::before{ border-color:var(--lavender-dim); }
 
-  .slot-title{ font-family:'Syne',sans-serif; font-weight:700; font-size:1.18rem; margin-bottom:4px; }
-  .slot-person{ color:var(--lavender); font-size:0.95rem; }
+  .slot-title{ font-family:'Syne',sans-serif; font-weight:700; font-size:1.12rem; line-height:1.2; margin-bottom:5px; }
+  .slot-person{ color:var(--lavender); font-size:0.94rem; }
   .slot-person b{ color:var(--cream); font-weight:600; }
+  .slot-person a.who{ color:var(--cream); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(255,106,69,0.55); transition:border-color .2s ease, color .2s ease; }
+  .slot-person a.who:hover{ color:var(--coral); border-color:var(--coral); }
   .slot.is-break .slot-title{ color:var(--lavender-dim); font-size:1.02rem; }
+
+  .roster-title{ font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; margin:0 0 6px; }
+  .roster-lede{ font-size:0.88rem; color:var(--lavender-dim); margin:0 0 10px; max-width:40ch; }
+  .roster{ list-style:none; margin:0; padding:0; }
+  .pro{
+    display:grid; grid-template-columns:72px minmax(0,1fr); gap:0 16px; align-items:center;
+    padding:15px 0; scroll-margin-top:100px;
+  }
+  .pro + .pro{ border-top:1px solid var(--line); }
+  .pro-photo, .pro-mono{ width:72px; height:72px; border-radius:50%; flex:none; }
+  .pro-photo{ object-fit:cover; background:var(--void-2); border:1px solid var(--line); display:block; }
+  .pro-mono{
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--coral), var(--magenta));
+    font-family:'Syne',sans-serif; font-weight:800; font-size:1.15rem; color:var(--ink);
+  }
+  .pro-name{ font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; line-height:1.2; }
+  .pro-role{ font-size:0.86rem; color:var(--lavender); line-height:1.4; margin-top:2px; }
+  .pro-links{ display:flex; flex-wrap:wrap; gap:2px 16px; margin-top:6px; }
+  .pro-links a{
+    font-size:0.8rem; font-weight:700; text-decoration:none; color:var(--cream);
+    padding:5px 0; border-bottom:1px solid var(--coral);
+    transition:color .2s ease;
+  }
+  .pro-links a:hover{ color:var(--coral); }
 
   /* ---------- Audience ---------- */
   .audience{ padding-top:clamp(60px,9vw,110px); padding-bottom:clamp(60px,9vw,110px); border-top:1px solid var(--line); }
@@ -470,7 +506,7 @@
         </div>
         <div class="meta-item">
           <span class="label">Horaires</span>
-          <span class="value mono">9h30 – 17h00</span>
+          <span class="value mono">9h – 17h</span>
         </div>
       </div>
     </div>
@@ -483,11 +519,11 @@
     <div class="signee">
       <div class="signee-card">
         <div class="signee-avatar" aria-hidden="true">VD</div>
-        <div><div class="signee-name">Véronique Dufourcq</div><div class="signee-role">Cofondatrice</div></div>
+        <div><div class="signee-name"><a href="https://www.linkedin.com/in/veronique-dufourcq" target="_blank" rel="noopener noreferrer">Véronique Dufourcq</a></div><div class="signee-role">Cofondatrice · Parcours de vie, à Pau</div></div>
       </div>
       <div class="signee-card">
-        <div class="signee-avatar" aria-hidden="true">AC</div>
-        <div><div class="signee-name">Aurélia Cimelière</div><div class="signee-role">Cofondatrice</div></div>
+        <img class="signee-avatar" src="assets/team/aurelia.jpg" alt="Portrait d’Aurélia Cimelière" width="44" height="44" loading="lazy" decoding="async" />
+        <div><div class="signee-name"><a href="https://www.linkedin.com/in/aur%C3%A9lia-cimeli%C3%A8re-99489759" target="_blank" rel="noopener noreferrer">Aurélia Cimelière</a></div><div class="signee-role">Cofondatrice · Encrage[s], à Biarritz</div></div>
       </div>
     </div>
   </section>
@@ -495,64 +531,127 @@
   <section class="program wrap" id="programme">
     <div class="section-head">
       <h2>Le programme de la journée</h2>
-      <p class="lede">Cinq temps forts entre voix, écriture, création sonore et modèles économiques du podcast — pensés pour des professionnel·les, par des professionnel·les.</p>
+      <p class="lede">Huit tables rondes et ateliers, de la voix au territoire. Un déjeuner local, une exposition sonore et des temps pour se rencontrer entre les sessions.</p>
     </div>
-    <p class="program-note">Horaires indicatifs — le déroulé complet et à jour est publié sur la billetterie HelloAsso.</p>
+    <p class="program-note">Les horaires précis de chaque atelier sont détaillés sur la billetterie HelloAsso.</p>
 
-    <div class="timeline">
-      <div class="slot">
-        <div class="slot-time mono">09:30</div>
-        <div><div class="slot-title">Accueil café</div></div>
-      </div>
-      <div class="slot">
-        <div class="slot-time mono">10:00</div>
+    <div class="program-layout">
+      <div class="timeline">
+      <div class="slot is-break">
+        <div class="slot-time mono">9h</div>
         <div>
-          <div class="slot-title">La voix, premier outil de travail</div>
-          <div class="slot-person">Hygiène et santé vocale, avec <b>Amaia Laborde</b>, professeure de chant et coach vocale</div>
+          <div class="slot-title">Café &amp; accueil</div>
         </div>
       </div>
       <div class="slot">
-        <div class="slot-time mono">10:45</div>
+        <div class="slot-time mono">Matin</div>
         <div>
-          <div class="slot-title">Trouver son angle éditorial</div>
-          <div class="slot-person">Ligne éditoriale et construction de l'interview, avec <b>Maud Calvès</b>, journaliste et podcasteuse (Autochtone)</div>
+          <div class="slot-title">Icebreaker et hygiène de la voix</div>
+          <div class="slot-person">Atelier avec <a class="who" href="#pro-amaia">Amaia Laborde</a>, coach vocale</div>
         </div>
       </div>
       <div class="slot">
-        <div class="slot-time mono">11:45</div>
+        <div class="slot-time mono"></div>
         <div>
-          <div class="slot-title">Création et identité sonores</div>
-          <div class="slot-person">Atelier live « madeleines sonores », avec <b>Vincent Cateigne</b>, compositeur et designer sonore (La Minute Son)</div>
+          <div class="slot-title">Édito, angle &amp; formats</div>
+          <div class="slot-person">Avec <a class="who" href="#pro-maud">Maud Calvès</a>, créatrice de podcasts immersifs, et <a class="who" href="#pro-aurelia">Aurélia Cimelière</a>, podcasteuse et pro de l’édito</div>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="slot-time mono"></div>
+        <div>
+          <div class="slot-title">Identité sonore &amp; musique</div>
+          <div class="slot-person">Avec <a class="who" href="#pro-vincent">Vincent Cateigne</a>, designer sonore</div>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="slot-time mono"></div>
+        <div>
+          <div class="slot-title">Entrepreneuriat : le podcast comme levier pour son activité</div>
+          <div class="slot-person">Avec <a class="who" href="#pro-romain-oger">Romain Oger</a> et <a class="who" href="#pro-victor">Victor Chopinet</a>, podcasteurs et entrepreneurs</div>
         </div>
       </div>
       <div class="slot is-break">
-        <div class="slot-time mono">13:00</div>
-        <div><div class="slot-title">Pause déjeuner</div></div>
-      </div>
-      <div class="slot">
-        <div class="slot-time mono">14:15</div>
+        <div class="slot-time mono">Midi</div>
         <div>
-          <div class="slot-title">Le podcast comme levier entrepreneurial</div>
-          <div class="slot-person">Avec <b>Romain Oger</b>, créateur du podcast De Rien</div>
+          <div class="slot-title">Déjeuner local et convivial</div>
+          <div class="slot-person">Talo à la plancha et cheesecake basque. Pause café avec le podcast La Minute Son : enregistrez votre « madeleine sonore » avec <a class="who" href="#pro-vincent">Vincent Cateigne</a>.</div>
         </div>
       </div>
       <div class="slot">
-        <div class="slot-time mono">15:15</div>
+        <div class="slot-time mono">Après-midi</div>
         <div>
-          <div class="slot-title">Sponsoring et collaborations de marque</div>
-          <div class="slot-person">Avec <b>Victor Chopinet</b>, créateur du podcast What The Health</div>
+          <div class="slot-title">Vidéo &amp; podcast : faut-il se lancer ?</div>
+          <div class="slot-person">Avec <a class="who" href="#pro-tom">Tom Teychené</a>, monteur vidéo spécialisé dans le podcast</div>
         </div>
       </div>
       <div class="slot">
-        <div class="slot-time mono">16:15</div>
+        <div class="slot-time mono"></div>
         <div>
-          <div class="slot-title">Table ronde de clôture</div>
-          <div class="slot-person">Le Sud-Ouest a-t-il besoin d'un écosystème podcast ?</div>
+          <div class="slot-title">Territoire : faire entendre le territoire et ancrer son podcast localement</div>
+          <div class="slot-person">Avec <a class="who" href="#pro-anne-sophie">Anne-Sophie Estruch</a>, <a class="who" href="#pro-romain-ferrand">Romain Ferrand</a> et <a class="who" href="#pro-anthony">Anthony Michel</a>, podcasteurs et journalistes</div>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="slot-time mono"></div>
+        <div>
+          <div class="slot-title">Pour clôturer : la rencontre du podcast et de la santé</div>
+          <div class="slot-person">Autour de La Générale, tiers-lieu de santé, avec <a class="who" href="#pro-victor">Victor Chopinet</a> (podcast What The Health)</div>
         </div>
       </div>
       <div class="slot is-break">
-        <div class="slot-time mono">17:00</div>
-        <div><div class="slot-title">Réseautage &amp; fin de journée</div></div>
+        <div class="slot-time mono">17h</div>
+        <div>
+          <div class="slot-title">Fin de la journée</div>
+        </div>
+      </div>
+      </div>
+
+      <div class="roster-wrap">
+        <h3 class="roster-title">Les intervenant·es</h3>
+        <p class="roster-lede">Photos et liens issus des publications de PodOuest et des profils publics des intervenant·es.</p>
+        <ul class="roster">
+          <li class="pro" id="pro-amaia">
+            <img class="pro-photo" src="assets/team/amaia.jpg" alt="Portrait de Amaia Laborde" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Amaia Laborde</div><div class="pro-role">Professeure de chant et de technique vocale · La Sirène, Anglet</div><div class="pro-links"><a href="https://www.linkedin.com/in/amaia-laborde-506848210" target="_blank" rel="noopener noreferrer" aria-label="Amaia Laborde sur LinkedIn">LinkedIn ↗</a><a href="https://www.instagram.com/la_sirene_anglet/" target="_blank" rel="noopener noreferrer" aria-label="Amaia Laborde sur Instagram">Instagram ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-maud">
+            <img class="pro-photo" src="assets/team/maud.jpg" alt="Portrait de Maud Calvès" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Maud Calvès</div><div class="pro-role">Journaliste, créatrice de podcasts et formatrice · Autochtone Studio</div><div class="pro-links"><a href="https://www.linkedin.com/in/calves-maud-podcast-creation-podcaster-lancer-podcast" target="_blank" rel="noopener noreferrer" aria-label="Maud Calvès sur LinkedIn">LinkedIn ↗</a><a href="https://www.instagram.com/maud.calves/" target="_blank" rel="noopener noreferrer" aria-label="Maud Calvès sur Instagram">Instagram ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-aurelia">
+            <img class="pro-photo" src="assets/team/aurelia.jpg" alt="Portrait de Aurélia Cimelière" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Aurélia Cimelière</div><div class="pro-role">Podcasteuse, pro de l’édito · Encrage[s] Podcast, Biarritz. Cofondatrice de PodOuest</div><div class="pro-links"><a href="https://www.linkedin.com/in/aur%C3%A9lia-cimeli%C3%A8re-99489759" target="_blank" rel="noopener noreferrer" aria-label="Aurélia Cimelière sur LinkedIn">LinkedIn ↗</a><a href="https://www.instagram.com/encrages.lepodcast/" target="_blank" rel="noopener noreferrer" aria-label="Aurélia Cimelière sur Instagram">Instagram ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-vincent">
+            <img class="pro-photo" src="assets/team/vincent.jpg" alt="Portrait de Vincent Cateigne" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Vincent Cateigne</div><div class="pro-role">Musicien, compositeur et designer sonore · Studio Nomade, La Minute Son</div><div class="pro-links"><a href="https://www.linkedin.com/in/vincentcateigne" target="_blank" rel="noopener noreferrer" aria-label="Vincent Cateigne sur LinkedIn">LinkedIn ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-romain-oger">
+            <img class="pro-photo" src="assets/team/romain-oger.jpg" alt="Portrait de Romain Oger" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Romain Oger</div><div class="pro-role">Podcasteur et entrepreneur · podcast De Rien</div><div class="pro-links"><a href="https://www.linkedin.com/in/derienbyromainoger" target="_blank" rel="noopener noreferrer" aria-label="Romain Oger sur LinkedIn">LinkedIn ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-victor">
+            <img class="pro-photo" src="assets/team/victor.jpg" alt="Portrait de Victor Chopinet" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Victor Chopinet</div><div class="pro-role">Podcasteur et entrepreneur · What The Health</div><div class="pro-links"><a href="https://www.instagram.com/vic_chopinet/" target="_blank" rel="noopener noreferrer" aria-label="Victor Chopinet sur Instagram">Instagram ↗</a><a href="https://open.spotify.com/show/0LLgz2NOUFgA9e05LzewHy" target="_blank" rel="noopener noreferrer" aria-label="Victor Chopinet sur Podcast">Podcast ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-tom">
+            <div class="pro-mono" aria-hidden="true">TT</div>
+            <div><div class="pro-name">Tom Teychené</div><div class="pro-role">Monteur vidéo spécialisé dans le podcast</div><div class="pro-links"><a href="https://www.linkedin.com/in/tom-teychen%C3%A9-2b9278343" target="_blank" rel="noopener noreferrer" aria-label="Tom Teychené sur LinkedIn">LinkedIn ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-anne-sophie">
+            <img class="pro-photo" src="assets/team/anne-sophie.jpg" alt="Portrait de Anne-Sophie Estruch" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Anne-Sophie Estruch</div><div class="pro-role">Journaliste et podcasteuse · Latitudes Pyrénées</div><div class="pro-links"><a href="https://www.linkedin.com/in/anne-sophie-estruch-885871150" target="_blank" rel="noopener noreferrer" aria-label="Anne-Sophie Estruch sur LinkedIn">LinkedIn ↗</a><a href="https://podcast.ausha.co/latitudes-pyrenees" target="_blank" rel="noopener noreferrer" aria-label="Anne-Sophie Estruch sur Podcast">Podcast ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-romain-ferrand">
+            <img class="pro-photo" src="assets/team/romain-ferrand.jpg" alt="Portrait de Romain Ferrand" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Romain Ferrand</div><div class="pro-role">Journaliste et podcasteur, Bayonne</div><div class="pro-links"><a href="https://www.linkedin.com/in/romainferrand" target="_blank" rel="noopener noreferrer" aria-label="Romain Ferrand sur LinkedIn">LinkedIn ↗</a></div></div>
+          </li>
+          <li class="pro" id="pro-anthony">
+            <img class="pro-photo" src="assets/team/anthony.jpg" alt="Portrait de Anthony Michel" width="72" height="72" loading="lazy" decoding="async" />
+            <div><div class="pro-name">Anthony Michel</div><div class="pro-role">Journaliste économique · Placéco Pays basque</div><div class="pro-links"><a href="https://www.linkedin.com/in/anthonymcl" target="_blank" rel="noopener noreferrer" aria-label="Anthony Michel sur LinkedIn">LinkedIn ↗</a></div></div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -585,10 +684,10 @@
     <div class="venue-grid">
       <div>
         <h2>Vendredi 2 octobre, à Anglet</h2>
-        <p class="venue-addr">La Générale — Anglet, Pays Basque. <a href="https://www.google.com/maps/search/?api=1&query=La+G%C3%A9n%C3%A9rale+Anglet" target="_blank" rel="noopener">Voir l'itinéraire ↗</a></p>
+        <p class="venue-addr">La Générale (association UrFU, tiers-lieu de santé), Anglet, Pays Basque. <a href="https://www.google.com/maps/search/?api=1&query=La+G%C3%A9n%C3%A9rale+Anglet" target="_blank" rel="noopener">Voir l'itinéraire ↗</a></p>
         <ul class="venue-list">
           <li><b>Date</b><span>Vendredi 2 octobre 2026</span></li>
-          <li><b>Horaires</b><span>9h30 – 17h00</span></li>
+          <li><b>Horaires</b><span>9h – 17h</span></li>
           <li><b>Lieu</b><span>La Générale, Anglet</span></li>
           <li><b>Contact</b><span><a href="mailto:podouest@gmail.com">podouest@gmail.com</a></span></li>
         </ul>
