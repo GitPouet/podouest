@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gitpouet.github.io/podouest/sitemap.xml
+Sitemap: https://podouest.vercel.app/sitemap.xml
